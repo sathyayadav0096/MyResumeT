@@ -1,174 +1,448 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Pages Deployment Guide</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        header {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #24292e;
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin: 20px 0 15px;
+            color: #0366d6;
+            border-bottom: 2px solid #0366d6;
+            padding-bottom: 5px;
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            margin: 15px 0 10px;
+            color: #24292e;
+        }
+        
+        .card {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .workflow-card {
+            flex: 1;
+            min-width: 300px;
+            background: #f6f8fa;
+            border: 1px solid #e1e4e8;
+            border-radius: 10px;
+            padding: 25px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            overflow-x: auto;
+        }
+        
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+        
+        code {
+            background: #f6f8fa;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+            border: 1px solid #e1e4e8;
+        }
+        
+        .step {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e1e4e8;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #0366d6;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #269f42;
+        }
+        
+        .alert {
+            padding: 15px;
+            background: #fff5b1;
+            border-left: 4px solid #f9c80e;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .file-structure {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+        
+        .success-check {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Mekala Satya Narayana - Flutter Developer&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: Arial, sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>line-height: 1.6;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #f4f4f4;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #333;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.container {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 90%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>max-width: 900px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: auto;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #fff;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>header {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-bottom: 2px solid #333;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>header h1 {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 28px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>header h2 {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 5px 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 18px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #666;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>section {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 20px 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>h3 {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-bottom: 1px solid #ccc;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding-bottom: 5px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>ul {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>list-style: none;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>ul li {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 5px 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>a {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #0066cc;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-decoration: none;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>a:hover {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-decoration: underline;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.sub-section {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 10px 0 20px 20px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;header&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h1&gt;Mekala Satya Narayana&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Flutter Developer&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>📞 +91 9666033750 | ✉️ &lt;a href="mailto:sathyayadav27@gmail.com"&gt;sathyayadav27@gmail.com&lt;/a&gt;&lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>📍 Bangalore, Marthahalli&lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>🔗 &lt;a href="https://www.linkedin.com/in/sathya9666033750/" target="_blank"&gt;LinkedIn&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Profile&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;Having as a professional flutter developer 3.8 years and total experience is 6.8 years, organisation that provides me an opportunity to grow and exploit my potential to excel in the area of my preview with full dedication to achieve personal as well as organisational goal.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Skills&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;Android &amp; iOS&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;Dart &amp; Flutter&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;Git, Github, Bitbucket&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;JSON Parsing, RestApi &amp; HTTPS&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;Provider, Bloc, GetX&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;Firebase, Sqlite, Local Database&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;CICD, Widget &amp; Unit Testing&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;MVC &amp; MVVM Architecture&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;SQL &amp; Jira Basics&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;Figma&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Education&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;strong&gt;MBA&lt;/strong&gt;, Osmania University (2014 - 2016)&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;strong&gt;B.Com Computers&lt;/strong&gt;, Osmania University (2011 - 2013)&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Languages&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;English&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;Telugu&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;Hindi&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Work Experience&lt;/h3&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="sub-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h4&gt;Intexm Media Pvt Ltd (Apr 2024 – Present)&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;&lt;strong&gt;Project:&lt;/strong&gt; Turbopaisa (Android) &lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;a href="https://play.google.com/store/apps/details?id=com.tejkun.turbopaisa" target="_blank"&gt;Play Store Link&lt;/a&gt;&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Turbo Paisa is a groundbreaking platform that rewards smartphone users for engaging with products and services. By completing tasks like trying out new apps, taking surveys, or watching videos, users accumulate rewards in the form of virtual currency.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;&lt;strong&gt;Tools:&lt;/strong&gt; Flutter, Dart, Figma, RestApi, JSON, Github, MVVM, Getx&lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;strong&gt;Database:&lt;/strong&gt; SharedPreference, Firebase&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="sub-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h4&gt;OpenTeQ Technologies (Jun 2023 – Jan 2024)&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;&lt;strong&gt;Project:&lt;/strong&gt; FunZippy (Android &amp; iOS)&lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;FunZippy connects users to parties, concerts, and cultural events. Provides tools for event discovery and planning.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;&lt;strong&gt;Tools:&lt;/strong&gt; Flutter, Dart, Figma, RestApi, JSON, Github, MVVM, Getx, Provider&lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;strong&gt;Database:&lt;/strong&gt; Sqlite, Firebase&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="sub-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h4&gt;Junaati Technologies Pvt Ltd (Mar 2021 – Feb 2022)&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;&lt;strong&gt;Project:&lt;/strong&gt; UTF Mall (Android &amp; iOS)&lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;a href="https://play.google.com/store/search?q=utf%20mall&amp;c=apps" target="_blank"&gt;Play Store&lt;/a&gt; |<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;a href="https://apps.apple.com/in/app/utf-mall/id1609746635" target="_blank"&gt;App Store&lt;/a&gt;&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Developed UTF Mall app to bring shopping malls online for offers, deals, shops, food courts, and events.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="sub-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h4&gt;Junaati Technologies Pvt Ltd (Oct 2022 – Feb 2023)&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;&lt;strong&gt;Project:&lt;/strong&gt; SKOAH (Android &amp; iOS)&lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;a href="https://play.google.com/store/apps/details?id=com.webappclouds.skoah" target="_blank"&gt;Play Store&lt;/a&gt; |<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;a href="https://apps.apple.com/in/app/skoah/id939115287" target="_blank"&gt;App Store&lt;/a&gt;&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Developed SKOAH skincare app including scheduling, managing appointments, shopping skincare products, and promotions.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="sub-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h4&gt;Mitsui OSK Line Pvt Ltd (Jan 2018 – Dec 2020)&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Role: Executive (Export Operations)&lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>Responsibilities included preparing Bill of Lading, export shipping documents, handling customs queries, and shipment schedules.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+    <header>
+        <h1>GitHub Pages Deployment Guide</h1>
+        <p>Complete solution for deploying your resume website</p>
+    </header>
+    
+    <div class="container">
+        <div class="card">
+            <h2>Step-by-Step Deployment Guide</h2>
+            
+            <div class="step">
+                <span class="step-number">1</span>
+                <h3>Create Repository Structure</h3>
+                <p>Your repository should have the following structure:</p>
+                <div class="file-structure">
+                    hastresume/<br>
+                    ├── .github/<br>
+                    │   └── workflows/<br>
+                    │       └── deploy.yml<br>
+                    ├── index.html<br>
+                    └── README.md
+                </div>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">2</span>
+                <h3>Create GitHub Actions Workflow</h3>
+                <p>Create a file at <code>.github/workflows/deploy.yml</code> with this content:</p>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">3</span>
+                <h3>Push to GitHub</h3>
+                <p>Commit and push your files to the main branch:</p>
+                <pre>git add .
+git commit -m "Add resume and deployment workflow"
+git push origin main</pre>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">4</span>
+                <h3>Verify Deployment</h3>
+                <p>Check the Actions tab in your GitHub repository to see the deployment progress. Once completed, your site will be live at:</p>
+                <p><code>https://sathyayadav0096.github.io/hastresume/</code></p>
+            </div>
+            
+            <div class="alert">
+                <p><strong>Important:</strong> Make sure your HTML file is named <code>index.html</code> and is in the root of your repository.</p>
+            </div>
+            
+            <a href="#" class="btn">View Live Website</a>
+        </div>
+        
+        <div class="workflow-card">
+            <h2>GitHub Actions Workflow File</h2>
+            <p>Content for <code>.github/workflows/deploy.yml</code>:</p>
+            <pre># Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4</pre>
+            
+            <p class="success-check">This workflow is correct and will deploy your site successfully!</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="card">
+            <h2>Resume HTML File</h2>
+            <p>Content for <code>index.html</code>:</p>
+            <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Mekala Satya Narayana - Flutter Developer&lt;/title&gt;
+  &lt;style&gt;
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background: #f4f4f4;
+      color: #333;
+    }
+    .container {
+      width: 90%;
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      padding: 20px 0;
+      border-bottom: 2px solid #333;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+    header h2 {
+      margin: 5px 0;
+      font-size: 18px;
+      color: #666;
+    }
+    section {
+      margin: 20px 0;
+    }
+    h3 {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li {
+      margin: 5px 0;
+    }
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .sub-section {
+      margin: 10px 0 20px 20px;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="container"&gt;
+    &lt;header&gt;
+      &lt;h1&gt;Mekala Satya Narayana&lt;/h1&gt;
+      &lt;h2&gt;Flutter Developer&lt;/h2&gt;
+      &lt;p&gt;
+        📞 +91 9666033750 | ✉️ &lt;a href="mailto:sathyayadav27@gmail.com"&gt;sathyayadav27@gmail.com&lt;/a&gt;&lt;br&gt;
+        📍 Bangalore, Marthahalli&lt;br&gt;
+        🔗 &lt;a href="https://www.linkedin.com/in/sathya9666033750/" target="_blank"&gt;LinkedIn&lt;/a&gt;
+      &lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;section&gt;
+      &lt;h3&gt;Profile&lt;/h3&gt;
+      &lt;p&gt;Having as a professional flutter developer 3.8 years and total experience is 6.8 years, organisation that provides me an opportunity to grow and exploit my potential to excel in the area of my preview with full dedication to achieve personal as well as organisational goal.&lt;/p&gt;
+    &lt;/section&gt;
+
+    &lt;section&gt;
+      &lt;h3&gt;Skills&lt;/h3&gt;
+      &lt;ul&gt;
+        &lt;li&gt;Android & iOS&lt;/li&gt;
+        &lt;li&gt;Dart & Flutter&lt;/li&gt;
+        &lt;li&gt;Git, Github, Bitbucket&lt;/li&gt;
+        &lt;li&gt;JSON Parsing, RestApi & HTTPS&lt;/li&gt;
+        &lt;li&gt;Provider, Bloc, GetX&lt;/li&gt;
+        &lt;li&gt;Firebase, Sqlite, Local Database&lt;/li&gt;
+        &lt;li&gt;CICD, Widget & Unit Testing&lt;/li&gt;
+        &lt;li&gt;MVC & MVVM Architecture&lt;/li&gt;
+        &lt;li&gt;SQL & Jira Basics&lt;/li&gt;
+        &lt;li&gt;Figma&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/section&gt;
+
+    &lt;section&gt;
+      &lt;h3&gt;Education&lt;/h3&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;strong&gt;MBA&lt;/strong&gt;, Osmania University (2014 - 2016)&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;B.Com Computers&lt;/strong&gt;, Osmania University (2011 - 2013)&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/section&gt;
+
+    &lt;section&gt;
+      &lt;h3&gt;Languages&lt;/h3&gt;
+      &lt;ul&gt;
+        &lt;li&gt;English&lt;/li&gt;
+        &lt;li&gt;Telugu&lt;/li&gt;
+        &lt;li&gt;Hindi&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/section&gt;
+
+    &lt;section&gt;
+      &lt;h3&gt;Work Experience&lt;/h3&gt;
+
+      &lt;div class="sub-section"&gt;
+        &lt;h4&gt;Intexm Media Pvt Ltd (Apr 2024 – Present)&lt;/h4&gt;
+        &lt;p&gt;&lt;strong&gt;Project:&lt;/strong&gt; Turbopaisa (Android) &lt;br&gt;
+        &lt;a href="https://play.google.com/store/apps/details?id=com.tejkun.turbopaisa" target="_blank"&gt;Play Store Link&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;Turbo Paisa is a groundbreaking platform that rewards smartphone users for engaging with products and services. By completing tasks like trying out new apps, taking surveys, or watching videos, users accumulate rewards in the form of virtual currency.&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;Tools:&lt;/strong&gt; Flutter, Dart, Figma, RestApi, JSON, Github, MVVM, Getx&lt;br&gt;
+        &lt;strong&gt;Database:&lt;/strong&gt; SharedPreference, Firebase&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="sub-section"&gt;
+        &lt;h4&gt;OpenTeQ Technologies (Jun 2023 – Jan 2024)&lt;/h4&gt;
+        &lt;p&gt;&lt;strong&gt;Project:&lt;/strong&gt; FunZippy (Android & iOS)&lt;br&gt;
+        &lt;p&gt;FunZippy connects users to parties, concerts, and cultural events. Provides tools for event discovery and planning.&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;Tools:&lt;/strong&gt; Flutter, Dart, Figma, RestApi, JSON, Github, MVVM, Getx, Provider&lt;br&gt;
+        &lt;strong&gt;Database:&lt;/strong&gt; Sqlite, Firebase&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="sub-section"&gt;
+        &lt;h4&gt;Junaati Technologies Pvt Ltd (Mar 2021 – Feb 2022)&lt;/h4&gt;
+        &lt;p&gt;&lt;strong&gt;Project:&lt;/strong&gt; UTF Mall (Android & iOS)&lt;br&gt;
+        &lt;a href="https://play.google.com/store/search?q=utf%20mall&c=apps" target="_blank"&gt;Play Store&lt;/a&gt; | 
+        &lt;a href="https://apps.apple.com/in/app/utf-mall/id1609746635" target="_blank"&gt;App Store&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;Developed UTF Mall app to bring shopping malls online for offers, deals, shops, food courts, and events.&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="sub-section"&gt;
+        &lt;h4&gt;Junaati Technologies Pvt Ltd (Oct 2022 – Feb 2023)&lt;/h4&gt;
+        &lt;p&gt;&lt;strong&gt;Project:&lt;/strong&gt; SKOAH (Android & iOS)&lt;br&gt;
+        &lt;a href="https://play.google.com/store/apps/details?id=com.webappclouds.skoah" target="_blank"&gt;Play Store&lt;/a&gt; | 
+        &lt;a href="https://apps.apple.com/in/app/skoah/id939115287" target="_blank"&gt;App Store&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;Developed SKOAH skincare app including scheduling, managing appointments, shopping skincare products, and promotions.&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="sub-section"&gt;
+        &lt;h4&gt;Mitsui OSK Line Pvt Ltd (Jan 2018 – Dec 2020)&lt;/h4&gt;
+        &lt;p&gt;Role: Executive (Export Operations)&lt;br&gt;
+        Responsibilities included preparing Bill of Lading, export shipping documents, handling customs queries, and shipment schedules.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        </div>
+    </div>
+    
+    <script>
+        // Simple JavaScript to demonstrate functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.querySelector('.btn');
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Your website is being deployed! Check your GitHub repository for progress.');
+            });
+        });
+    </script>
 </body>
 </html>
